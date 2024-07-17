@@ -3,16 +3,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.tab-btn');
     let products = [];
 
-    // Fetch product data from API
+    
     fetch('https://cdn.shopify.com/s/files/1/0564/3685/0790/files/multiProduct.json')
         .then(response => response.json())
         .then(data => {
             products = data.categories;
-            showCategory('Kids'); // Show Kids' products by default
+            showCategory('Kids'); 
         })
         .catch(error => console.error('Error fetching data:', error));
 
-    // Add click event listeners to tab buttons
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
             const category = button.dataset.category;
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
             setActiveTab(button);
         });
     });
-
     function showCategory(category) {
         const categoryProducts = products.find(cat => cat.category_name === category)?.category_products || [];
         productContainer.innerHTML = '';
